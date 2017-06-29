@@ -15,10 +15,10 @@
     <div class="collapse navbar-collapse" id="fouadApp">
 
         <ul class="nav navbar-nav">
-                          <li><a href="#">CATEGORIES</a></li>
-                          <li><a href="#">ITEMS</a></li>
-                          <li><a href="members.php">MEMBERS</a></li>
-                          <li><a href="#">COMMENTS</a></li>
+                          <li><a href="#">categores</a></li>
+                          <li><a href="#">items</a></li>
+                          <li><a href="members.php">memebers</a></li>
+                          <li><a href="#">comments</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
