@@ -1,7 +1,7 @@
 <?php
 session_start();
 $noNavbar ='';
-
+$pageTitle="Login";
 /*check if the session is exits OR Not
  * if it exits
  direct this user  to his dashboard */
