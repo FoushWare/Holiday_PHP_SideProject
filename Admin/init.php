@@ -13,6 +13,7 @@ $JS     ="layout/js/";
 $font   ="layout/fonts";
 
 //include important files
+include $func .'functions.php';
 include $tpl . 'header.php';
 
 //include navbar in all pages except the page with variable $noNavbar
