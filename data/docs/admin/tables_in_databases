@@ -1,0 +1,14 @@
+first_table   users tables in the shop database
+
+
+CREATE TABLE users(
+    UserID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        Username VARCHAR(255)    ,
+            Password VARCHAR(255)  ,
+                Email VARCHAR(255)   ,
+                    FullName VARCHAR(255) ,
+                        GroupID VARCHAR(255) ,
+                            TrustStatus INT DEFAULT 0 ,
+                                RegStatus  INT DEFAULT 0
+                                    
+        )ENGINE=INNODB;

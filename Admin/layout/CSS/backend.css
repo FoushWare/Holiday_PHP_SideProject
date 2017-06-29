@@ -1,0 +1,73 @@
+/*Start Main Rules*/
+body{
+    font-size:16px;
+    /* background-color:#F4F4F4; */
+    background-color:#eee;
+
+}
+
+
+/*End Main Rules*/
+
+/*START Login form*/
+
+.login{
+    width:300px;
+    margin:100px auto;
+}
+.logic h4{
+    color:#888;
+}
+.login .form-control{
+    margin:10px 0;
+    background-color:#EAEAEA;
+}
+.login .btn{
+    background:#008dde;
+}
+
+
+/*End Login form*/
+
+/*start of navbar*/
+
+.navbar{
+    border-radius:0px;
+    margin:0px;
+    border:none;
+}
+
+.navbar-nav>li>a{
+    font-size:1em;
+    color:#FFFFFF;
+    padding:15px;
+}
+.navbar-inverse .navbar-nav>li>a{color:#FFFFFF;}
+.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a:hover{
+    font-size:30px;
+    color:#00979a;
+}
+.navbar-nav>li>.dropdown,
+.navbar-nav>li>.dropdown-menu{
+    background:#00979a;
+}
+.dropdown-menu>li>a{
+    color:#FFFFFF;
+}
+.navbar-inverse .navbar-brand{color:#FFFFFF;}
+.navbar-brand{
+    font-size:1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*End of navbar*/
