@@ -22,9 +22,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">fouad<span class='caret'</span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">fouad<span class='caret'</span></a>
                                 <ul class='dropdown-menu'>
-                                  <li ><a href="#">Edit</a></li>
+                                  <li ><a href="members.php?do=Edit">Edit</a></li>
                                   <li><a href="#">Settings</a></li>
                                   <li><a href="logout.php">Logout</a></li>
                                 </ul>
