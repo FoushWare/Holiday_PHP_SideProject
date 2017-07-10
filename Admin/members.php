@@ -43,7 +43,7 @@ if($count>0){//if the user exists it will go to the form
             <div class="form-group form-group-lg">
                     <label  class="col-sm-2 control-label">UserName</label>
                     <div class="col-sm-10">
-                        <input type="text" name="username" class="form-control" autocomplete="off" required="required" placeholder="Username"/>
+                        <input type="text" name="username" class="form-control" autocomplete="off" required="required" placeholder="Username" value="<?php echo  $row['Username']?>"/>
                     </div>
 
             </div>
@@ -53,7 +53,7 @@ if($count>0){//if the user exists it will go to the form
             <div class="form-group form-group-lg">
                 <label  class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" name="email" class="form-control" autocomplete="off" required="required" placeholder="Email"/>
+                <input type="email" name="email" class="form-control" autocomplete="off" required="required" placeholder="Email" value="<?php echo  $row['Email']?>"/>
                 </div>
             </div>
         <!-- End Email Field-->
@@ -62,8 +62,8 @@ if($count>0){//if the user exists it will go to the form
             <div class="form-group form-group-lg">
                 <label  class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-10">
-                <input type="hidden" name="old_password" value="<?php $row['Password']?>" />
-                    <input type="password" name="New-password" class="form-control col-sm-10" autocomplete="new-password"  placeholder="password"/>
+                <input type="hidden" name="OldPassword" value="<?php echo $row['Password']?>" />
+                    <input type="password" name="NewPassword" class="form-control col-sm-10" autocomplete="new-password"  placeholder="password"/>
                 </div>
 
             </div>
@@ -74,7 +74,7 @@ if($count>0){//if the user exists it will go to the form
             <div class="form-group form-group-lg">
                 <label  class="col-sm-2 control-label">FullName</label>
                 <div class="col-sm-10">
-                    <input type="text" name="full" class="form-control col-sm-10" autocomplete="off" required="required" placeholder="FullName"/>
+                    <input type="text" name="full" class="form-control col-sm-10" autocomplete="off" required="required" placeholder="FullName" value="<?php echo  $row['FullName']?>"/>
                 </div>
 
             </div>
@@ -130,20 +130,22 @@ echo 'Hello from Insert';
 <?php } //brace End of Insert page
 
 else if($do == 'Update'){//brace Start of Update page
-    echo '<h1 class="text-center">Update Member</h1>';
     /*check if the user came from the FORM with POST REQUEST
      *and collect the data from the form to use it with SQL statement
      * to update his/her setting
      * */
 
     if($_SERVER['REQUEST_METHOD']=='POST'){
+
+    echo '<h1 class="text-center">Update Member</h1>';
+
         //Then collect info from FORM :>
         $id=$_POST['userid'];
         $user=$_POST['username'];
         $email=$_POST['email'];
         $name=$_POST['full'];
         //password trick
-        $pass=empty($_GET['New-Password']) ? $_POST['old_password'] : $_POST[New_password];
+        $pass=empty($_POST['NewPassword']) ? $_POST['OldPassword'] : $_POST['NewPassword'];
 
         /*Form validation*/
         $formError=array();
@@ -154,15 +156,15 @@ else if($do == 'Update'){//brace Start of Update page
 
 //Loop through the error
             foreach($formError as $error){
-                echo '<div class="alert alert-danger"> . $error .</div>';
+                echo '<div class="alert alert-danger">' . $error .'</div>';
 }
 
 
 //if there is no errors we will update the user  datatbase
 
 if(empty($formError)){
-    $stmt=$con->prepare("UPDATE users SET Username=?,Email=?,Fullname=? WHERE Userid=?");
-    $stmt->execute(array($user,$email,$name,$id));
+    $stmt=$con->prepare("UPDATE users SET Username=?,Email=?,Fullname=?,Password = ? WHERE UserID=?");
+    $stmt->execute(array($user,$email,$name,$pass,$id));
     echo $stmt->rowCount(). 'updated';
 }
 
