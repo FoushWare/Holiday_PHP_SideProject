@@ -63,7 +63,7 @@ if($count>0){//if the user exists it will go to the form
                 <label  class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-10">
                 <input type="hidden" name="OldPassword" value="<?php echo $row['Password']?>" />
-                    <input type="password" name="NewPassword" class="form-control col-sm-10" autocomplete="new-password"  placeholder="password"/>
+                    <input type="password" name="NewPassword" class="form-control col-sm-10" autocomplete="new-password" required="required" placeholder="password"/>
                 </div>
 
             </div>
@@ -107,8 +107,71 @@ else{
 
 
 else if($do == 'Add'){ //brace start of Add page
-echo 'Hello from Add';
+
+
 ?>
+
+
+
+        <div class="container">
+        <h1 class="text-center">Add Member</h1>
+
+        <form class="form-horizontal" action="?do=Insert" method="POST">
+
+            <!-- START OF this is a hidden input to send userid to Update page so no anyone see anything :> -->
+            <input type="hidden" name="userid" value="<?php echo $userid; ?>"/>
+            <!-- End OF this is a hidden input to send userid to Update page so no anyone see anything :> -->
+        <!-- Start username Field-->
+            <div class="form-group form-group-lg">
+                    <label  class="col-sm-2 control-label">UserName</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="username" class="form-control" autocomplete="off" required="required" placeholder="Username"/>
+                    </div>
+
+            </div>
+        <!-- End username Field-->
+
+        <!-- Start Email Field-->
+            <div class="form-group form-group-lg">
+                <label  class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                <input type="email" name="email" class="form-control" autocomplete="off" required="required" placeholder="Email"/>
+                </div>
+            </div>
+        <!-- End Email Field-->
+
+        <!-- Start Password Field-->
+            <div class="form-group form-group-lg">
+                <label  class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" name="NewPassword" class="form-control col-sm-10" autocomplete="new-password" required="required" placeholder="password"/>
+                        <i class="fa fa-eye fa-2x show-pass"></i>
+                </div>
+
+            </div>
+        <!-- End Password Field-->
+
+        <!-- End FullName Field-->
+
+            <div class="form-group form-group-lg">
+                <label  class="col-sm-2 control-label">FullName</label>
+                <div class="col-sm-10">
+                    <input type="text" name="full" class="form-control col-sm-10" autocomplete="off" required="required" placeholder="FullName"/>
+                </div>
+
+            </div>
+
+        <!-- End FullName Field-->
+
+            <div class="form-group form-group-lg">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type='submit' value="Add Member" class="btn btn-primary btn-lg"/>
+                    </div>
+            </div>
+
+        </form>
+        </div>  <!--End of container-->
+
 
 
 <?php } //brace End of Add page
@@ -119,8 +182,13 @@ else if($do == 'Manage'){//brace start of Manage page
 echo 'Hello from Manage';
 ?>
 
-<?php } //brace End of Manage page
 
+
+
+
+
+
+<?php } //brace End of Manage page
 
 else if($do == 'Insert'){ //brace Start of Insert page
 
@@ -135,10 +203,11 @@ else if($do == 'Update'){//brace Start of Update page
      * to update his/her setting
      * */
 
+    echo '<div class="container">';
+
     if($_SERVER['REQUEST_METHOD']=='POST'){
 
     echo '<h1 class="text-center">Update Member</h1>';
-
         //Then collect info from FORM :>
         $id=$_POST['userid'];
         $user=$_POST['username'];
@@ -175,9 +244,11 @@ if(empty($formError)){
 }//End of REQUEST_METHOD check
 
 else{
+    echo '</br>';
     echo '<div class="alert alert-danger">sorry you can not browse this page</div>';
 }
 
+echo '</div>'; //End of container of the page
 
 ?>
 <?php } //brace End of Update page

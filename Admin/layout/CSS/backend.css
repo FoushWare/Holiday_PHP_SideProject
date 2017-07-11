@@ -4,6 +4,11 @@ body{
     background-color:#F4F4F4;
 
 }
+h1{
+    font-size:43px;
+    font-weight:bold;
+    color:#8a6d3b;
+}
 
 
 /*End Main Rules*/
@@ -53,9 +58,9 @@ body{
 .dropdown-menu>li>a{
     color:#FFFFFF;
 }
-.navbar-inverse .navbar-brand{color:#FFFFFF;}
+.navbar-inverse .navbar-brand{color:#75da1e;}
 .navbar-brand{
-    font-size:1em;
+    font-size:1.5em;
 }
 
 /*End of navbar*/
@@ -64,10 +69,26 @@ body{
 .form-horizontal{
     margin-top:50px;
 }
+.form-control{
+    position:relative;
+}
 
+.asterisk{
+    position:absolute;
+    top:10px;
+    right:20px;
+    font-size:23px;
+    font-weight:bold;
+    color:red;
+}
 
-
-
+/*START member page :=> Add member show password*/
+.show-pass{
+    position:absolute;
+    top:15px;
+    right:-20px;
+}
+/*End member page :=> Add member show password*/
 
 
 

@@ -9,6 +9,35 @@ $(function(){
         $(this).attr('placeholder',$(this).attr('data-text'));
     })
 
+/*Start  Add astrick after input field  */
+
+    $('input').each(function(){
+       if( $(this).attr('required') == 'required' ){
+            $(this).after('<span class="asterisk">*</span>');
+        }
+
+    });
+/*End  Add astrick after input field  */
+
+/*START of show password*/
+
+    var passfield=$('input:password');
+    $('.show-pass').hover(function(){
+
+          passfield.attr('type','text');
+
+    },function(){
+          passfield.attr('type','password');
+
+    });
+
+
+
+
+
+/*End of show password*/
+
+
 
 });
 
