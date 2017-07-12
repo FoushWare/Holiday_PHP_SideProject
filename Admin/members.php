@@ -95,7 +95,10 @@ if($count>0){//if the user exists it will go to the form
 //if there is no id with that request
 else{
     echo "<div class='container'>";
-    echo"<div class='alert alert-danger'>There No such ID</div>";
+
+    $theMsg="<div class='alert alert-danger'>There is  No such ID</div>";
+    redirectHome($theMsg);
+
     echo"</div>";
 
 
@@ -292,7 +295,8 @@ $stmt = $con->prepare("SELECT * FROM users WHERE Username = ?");
         }//End of [if condition] for count
         else{//the user is exits in the db you can't insert him
 
-                echo '<div class="alert alert-danger h1 text-center">The user is already exists </div>';
+                $theMsg='<div class="alert alert-danger h1 text-center">The user is already exists </div>';
+                redirectHome($theMsg,'back');
 }
 
 
@@ -300,7 +304,9 @@ $stmt = $con->prepare("SELECT * FROM users WHERE Username = ?");
 
 }else{// user get direct not from POST request
 
-echo '<div class="alert alert-danger h1 text-center">You can not browse this page direct</div>';
+$theMsg='<div class="alert alert-danger h1 text-center">You can not browse this page direct</div>';
+
+                redirectHome($theMsg);
 }
 
 
@@ -359,7 +365,8 @@ if(empty($formError)){
 
 else{
     echo '</br>';
-    echo '<div class="alert alert-danger">sorry you can not browse this page</div>';
+   $theMsg='<div class="alert alert-danger">sorry you can not browse this page</div>';
+    redirectHome($theMsg);
 }
 
 echo '</div>'; //End of container of the page
@@ -392,7 +399,8 @@ echo '<div class="container">';
         }
 else{//if the user not in the db
             echo '</br>';
-     echo '<div class="alert alert-danger text-center h1">the user is not in our db :)</div>';
+     $theMsg='<div class="alert alert-danger text-center h1">the user is not in our db :)</div>';
+    redirectHome($theMsg,'back');
 }
 
 
