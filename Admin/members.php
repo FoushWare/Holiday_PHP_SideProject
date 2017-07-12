@@ -199,7 +199,7 @@ else if($do == 'Manage'){//brace start of Manage page
             <th>UserName</th>
             <th>Email</th>
             <th>FullName</th>
-            <th>Registeration status</th>
+            <th>Registeration Date </th>
             <th>Control</th>
           </tr>
 
@@ -219,7 +219,7 @@ else if($do == 'Manage'){//brace start of Manage page
                     echo'<td>'.$user['Username'].'</td>';
                     echo'<td>'.$user['Email'].'</td>';
                     echo'<td>'.$user['FullName'].'</td>';
-                    echo'<td>'.$user['RegStatus'].'</td>';
+                    echo'<td>'.$user['Date'].'</td>';
                     echo'<td>
                         <a class="btn btn-primary Edit" href="members.php?do=Edit&&userid='.$user['UserID'].'"><i class="fa fa-edit"></i>Edit</a>
                         <a class="btn btn-danger Delete confirm" href="members.php?do=Delete&&userid='.$user['UserID'].'"><i class="fa fa-close"></i>Delete</a>
@@ -279,8 +279,8 @@ $count=checkItem('Username','users',$user);
 
 
 
-            $stmt2 = $con->prepare("INSERT INTO users(Username , Password , Email,FullName)
-                                    VALUES(:Xuser, :Xpass, :XEmail,:XFullName)");
+            $stmt2 = $con->prepare("INSERT INTO users(Username , Password , Email,FullName,Date)
+                                    VALUES(:Xuser, :Xpass, :XEmail,:XFullName,now())");
             $stmt2->execute(array(
 
                 ':Xuser'         =>      $user,
