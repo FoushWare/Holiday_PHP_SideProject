@@ -90,7 +90,21 @@ h1{
 }
 /*End member page :=> Add member show password*/
 
-
+/*Start manage table*/
+.main-table{
+    margin-top:50px;
+}
+.main-table thead th {
+    text-align:center;
+}
+.Edit{
+    padding:6px  18px;
+}
+.Edit , .Delete{
+    margin-left:2px;
+    margin-bottom:3px;
+}
+/*End manage table*/
 
 
 
