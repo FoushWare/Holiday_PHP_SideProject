@@ -102,6 +102,12 @@ h1{
 .main-table thead th {
     text-align:center;
 }
+.main-table thead{
+    background:#333;
+    color:#FFFFFF;
+}
+
+
 .Edit{
     padding:6px  18px;
 }

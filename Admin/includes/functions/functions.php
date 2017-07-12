@@ -43,4 +43,42 @@ header("refresh:$seconds,url=$url");
 }//End of redirectHome function
 
 
+/**checkItem function
+ *To check  item in the db i.e(if i want to delete user i have first check)
+ *if he exists in db first and then do action
+ * and i.e(in add i have to check if the user exists before add them )
+ * avoid dublication
+ * */
+
+function checkItem($Item,$from,$value){
+        global $con;
+
+    $stmt= $con->prepare("SELECT $Item FROM $from WHERE $Item= ?");
+    $stmt->execute(array($value));
+
+    return $stmt->rowCount();
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

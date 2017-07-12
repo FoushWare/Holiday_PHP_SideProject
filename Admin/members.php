@@ -272,10 +272,8 @@ if(empty($formError)){ //if the form is added correctly
 /*first check if the New-user exists in the db or not
  * to not conflict result and haveing dublecated users
  */
-$stmt = $con->prepare("SELECT * FROM users WHERE Username = ?");
 
-        $stmt->execute(array($user));
-        $count= $stmt->rowCount();
+$count=checkItem('Username','users',$user);
         if($count == 0){ //the username isn't in the db so i can add him/her
 
 
@@ -291,6 +289,8 @@ $stmt = $con->prepare("SELECT * FROM users WHERE Username = ?");
                 ":XFullName"     =>      $name
             ));
 
+                $theMsg='<div class="alert alert-success h1 text-center">You have added new user :) </div>';
+                redirectHome($theMsg,'back');
 
         }//End of [if condition] for count
         else{//the user is exits in the db you can't insert him
@@ -382,11 +382,8 @@ else if($do == 'Delete'){ //brace start of Delete page
       * this for security cause someone cant type to the url
       * id that do not exists
       */
-
-     $stmt= $con->prepare("SELECT * FROM users WHERE UserID=:Xuserid");
-     $stmt->bindparam(":Xuserid",$userid);
-     $stmt->execute();
-     if( $stmt->rowCount() >0 )//this mean the user exists in db delete him/her :)
+$count=checkItem('UserID','users',$userid);
+     if( $count >0 )//this mean the user exists in db delete him/her :)
         {
 
 echo '<div class="container">';
