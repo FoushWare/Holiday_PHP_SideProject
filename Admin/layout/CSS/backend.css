@@ -93,6 +93,11 @@ h1{
 /*Start manage table*/
 .main-table{
     margin-top:50px;
+
+        -moz-box-shadow: 4px 11px 42px grey;
+        -webkit-box-shadow: 4px 11px 42px grey;
+         box-shadow: 4px 11px 42px grey;
+
 }
 .main-table thead th {
     text-align:center;

@@ -188,6 +188,7 @@ else if($do == 'Manage'){//brace start of Manage page
 ?>
 
 <div class="container">
+<h1 class="text-center">Manage Members</h1>
     <table class="main-table table-responsive table table-bordered text-center  table-striped table-hover ">
         <thead>
           <tr>
@@ -218,7 +219,7 @@ else if($do == 'Manage'){//brace start of Manage page
                     echo'<td>'.$user['RegStatus'].'</td>';
                     echo'<td>
                         <a class="btn btn-primary Edit" href="members.php?do=Edit&&userid='.$user['UserID'].'"><i class="fa fa-edit"></i>Edit</a>
-                        <a class="btn btn-danger Delete" href="members.php?do=Delete&&userid='.$user['UserID'].'"><i class="fa fa-close"></i>Delete</a>
+                        <a class="btn btn-danger Delete confirm" href="members.php?do=Delete&&userid='.$user['UserID'].'"><i class="fa fa-close"></i>Delete</a>
                         </td>';
 
                         echo '</tr>';
@@ -368,7 +369,36 @@ echo '</div>'; //End of container of the page
 
 else if($do == 'Delete'){ //brace start of Delete page
 
-echo 'Hello from Delete';
+     $userid=isset($_GET['userid']) && is_numeric($_GET['userid']) ? intval($_GET['userid']) : 0;
+
+     /*Check if the user i want to delete exists in db :
+      * this for security cause someone cant type to the url
+      * id that do not exists
+      */
+
+     $stmt= $con->prepare("SELECT * FROM users WHERE UserID=:Xuserid");
+     $stmt->bindparam(":Xuserid",$userid);
+     $stmt->execute();
+     if( $stmt->rowCount() >0 )//this mean the user exists in db delete him/her :)
+        {
+
+echo '<div class="container">';
+            $stmt2= $con->prepare("DELETE FROM users WHERE UserID= :Xuserid");
+             $stmt2->bindParam(":Xuserid",$userid);
+            $stmt2->execute();
+            echo '</br>';
+            echo '<div class="alert alert-success text-center h1">You have delete this user :)</div>';
+
+        }
+else{//if the user not in the db
+            echo '</br>';
+     echo '<div class="alert alert-danger text-center h1">the user is not in our db :)</div>';
+}
+
+
+echo '</div>';
+
+
 ?>
 
 <?php } //brace End of Delete page

@@ -30,15 +30,23 @@ $(function(){
           passfield.attr('type','password');
 
     });
-
-
-
-
-
 /*End of show password*/
 
 
+/*Start confirm  of delete button*/
 
-});
+    $('.confirm').click(function(){
+
+        return confirm("Are you sure?");
+    });
+
+
+
+/*Delete confirm  of delete button*/
+
+
+
+
+}); //End of the file
 
 
