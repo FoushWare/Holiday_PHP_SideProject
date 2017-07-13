@@ -8,8 +8,9 @@ h1{
     font-size:43px;
     font-weight:bold;
     color:#8a6d3b;
+    margin-bottom:40px !important;
+    margin-top:40px !important;
 }
-
 
 /*End Main Rules*/
 
@@ -117,11 +118,51 @@ h1{
 }
 /*End manage table*/
 
-
-
-
-
-
-
 /*End of Member Page*/
 
+
+/*Start of Dashboard page*/
+
+.main-state .state{
+    background-color:#EEE;
+    font-size:1em;
+    border:1px solid #CCC;
+    padding:20px;
+}
+
+.main-state .state span{
+    display:block;
+    font-size:50px;
+}
+
+.latest{
+    margin-top:40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*End of Dashboard page*/
