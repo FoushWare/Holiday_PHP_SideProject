@@ -44,7 +44,7 @@ header("refresh:$seconds,url=$url");
 
 
 /**checkItem function
- *To check  item in the db i.e(if i want to delete user i have first check)
+ *To check  item in the db i.e(if i want to delete user i  have first check)
  *if he exists in db first and then do action
  * and i.e(in add i have to check if the user exists before add them )
  * avoid dublication
@@ -62,13 +62,37 @@ function checkItem($Item,$from,$value){
 }
 
 
+/*function to calculate items in the database
+ *
+ *
+ *
+ *
+ * */
+
+function countItems($item,$table){
+    global $con;
+
+    $stmt= $con->prepare("SELECT COUNT($item) FROM $table ");
+    $stmt->execute();
+
+    return $stmt->fetchColumn();
+
+}
 
 
+/*get latest[user,items,....]*/
 
+function getLatest($select,$table,$order,$limit=5){
 
+    global $con;
 
-
-
+    $stmt=$con->prepare("SELECT $select FROM $table
+                                        ORDER BY $order
+                                        DESC LIMIT $limit");
+    $stmt->execute();
+    $rows=$stmt->fetchAll();
+    return $rows;
+}
 
 
 

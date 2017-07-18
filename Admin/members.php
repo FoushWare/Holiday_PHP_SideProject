@@ -182,10 +182,19 @@ else if($do == 'Add'){ //brace start of Add page
 
 else if($do == 'Manage'){//brace start of Manage page
 
+$query="";
 
-//select all users from the database and list them to the table
+if(isset($_GET['page']) && $_GET['page']=="Pending"){
+$query="AND RegStatus = 0";
+}
 
-    $stmt= $con-> prepare("SELECT * FROM users");
+
+
+
+
+//select all users from the database except admin and list them to the table
+
+    $stmt= $con-> prepare("SELECT * FROM users WHERE GroupID !=1 $query ORDER BY UserID DESC");
     $stmt->execute();
     $rows=$stmt->fetchAll();
 ?>
@@ -220,10 +229,13 @@ else if($do == 'Manage'){//brace start of Manage page
                     echo'<td>'.$user['Email'].'</td>';
                     echo'<td>'.$user['FullName'].'</td>';
                     echo'<td>'.$user['Date'].'</td>';
-                    echo'<td>
-                        <a class="btn btn-primary Edit" href="members.php?do=Edit&&userid='.$user['UserID'].'"><i class="fa fa-edit"></i>Edit</a>
-                        <a class="btn btn-danger Delete confirm" href="members.php?do=Delete&&userid='.$user['UserID'].'"><i class="fa fa-close"></i>Delete</a>
-                        </td>';
+                    echo'<td>';
+                    echo '<a class="btn btn-primary Edit" href="members.php?do=Edit&&userid='.$user['UserID'].'"><i class="fa fa-edit"></i>Edit</a>';
+                    echo ' <a class="btn btn-danger Delete confirm" href="members.php?do=Delete&&userid='.$user['UserID'].'"><i class="fa fa-close"></i>Delete</a>';
+                    if($user['RegStatus']==0){
+                    echo ' <a class="btn btn-info info" href="members.php?do=Activate&&userid='.$user['UserID'].'"><i class="fa fa-close"></i>Activate</a>';
+                    }
+                         echo'</td>';
 
                         echo '</tr>';
     }//End of foreach
@@ -279,8 +291,8 @@ $count=checkItem('Username','users',$user);
 
 
 
-            $stmt2 = $con->prepare("INSERT INTO users(Username , Password , Email,FullName,Date)
-                                    VALUES(:Xuser, :Xpass, :XEmail,:XFullName,now())");
+            $stmt2 = $con->prepare("INSERT INTO users(Username , Password , Email,FullName,RegStatus,Date)
+                                    VALUES(:Xuser, :Xpass, :XEmail,:XFullName,1,now())");
             $stmt2->execute(array(
 
                 ':Xuser'         =>      $user,
@@ -411,7 +423,36 @@ echo '</div>';
 
 else if($do == 'Activate'){ //brace start of Activate page
 
-echo 'Hello from Activate';
+    echo 'Hello from Activate';
+
+     $userid=isset($_GET['userid']) && is_numeric($_GET['userid']) ? intval($_GET['userid']) : 0;
+
+     /*Check if the user i want to delete exists in db :
+      * this for security cause someone cant type to the url
+      * id that do not exists
+      */
+$count=checkItem('UserID','users',$userid);
+     if( $count >0 )//this mean the user exists in db delete him/her :)
+        {
+
+echo '<div class="container">';
+            $stmt2= $con->prepare("UPDATE users SET RegStatus=1  WHERE UserID= :Xuserid");
+             $stmt2->bindParam(":Xuserid",$userid);
+            $stmt2->execute();
+            echo '</br>';
+           $theMsg ='<div class="alert alert-success text-center h1">You have Activate this user :)</div>';
+            redirectHome($theMsg,'back');
+        }
+else{//if the user not in the db
+            echo '</br>';
+     $theMsg='<div class="alert alert-danger text-center h1">the user is not in our db :)</div>';
+    redirectHome($theMsg);
+}
+
+
+echo '</div>';
+
+
 ?>
 <?php } //brace End of Activate page
 

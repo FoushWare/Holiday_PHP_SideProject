@@ -8,14 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Fouad Shop</a>
+      <a class="navbar-brand" href="dashboard.php">Fouad Shop</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="fouadApp">
 
         <ul class="nav navbar-nav">
-                          <li><a href="#">categores</a></li>
+                          <li><a href="categories.php">categores</a></li>
                           <li><a href="#">items</a></li>
                           <li><a href="members.php">memebers</a></li>
                           <li><a href="#">comments</a></li>
