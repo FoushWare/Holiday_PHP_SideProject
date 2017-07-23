@@ -36,7 +36,13 @@ $latestUsers=getLatest("*","users",'UserID',$latestNum);
             <div class="col-md-3">
                 <div class=" text-center state items_state">
                     Totatl items
-                    <span>30</span>
+                    <span>
+                        <a href="categories.php?do=Manage">
+                            <?php
+                                echo $count=countItems('ID','categories');
+                             ?>
+                       </a>
+                    </span>
                 </div>
             </div>
             <div class="col-md-3">

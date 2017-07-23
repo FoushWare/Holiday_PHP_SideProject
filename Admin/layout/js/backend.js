@@ -45,6 +45,39 @@ $(function(){
 /*Delete confirm  of delete button*/
 
 
+/*START full view and classic*/
+    $('.cat h3').click(function(){
+
+    $(this).next('.full-view').fadeToggle(200);
+
+
+    });
+
+    $('.cat-panel .option span').click(function(){
+
+        $(this).addClass('active').siblings('span').removeClass('active');
+        if($(this).data('view') =='Full' ){
+            $('.cat .full-view').fadeIn(200);
+        }else{
+            $('.cat .full-view').fadeOut(200);
+        }
+
+
+    });
+/*END full view and classic*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }); //End of the file

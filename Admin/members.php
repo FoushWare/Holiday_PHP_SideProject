@@ -121,9 +121,6 @@ else if($do == 'Add'){ //brace start of Add page
 
         <form class="form-horizontal" action="?do=Insert" method="POST">
 
-            <!-- START OF this is a hidden input to send userid to Update page so no anyone see anything :> -->
-            <input type="hidden" name="userid" value="<?php echo $userid; ?>"/>
-            <!-- End OF this is a hidden input to send userid to Update page so no anyone see anything :> -->
         <!-- Start username Field-->
             <div class="form-group form-group-lg">
                     <label  class="col-sm-2 control-label">UserName</label>
@@ -244,7 +241,7 @@ $query="AND RegStatus = 0";
             ?>
         </tbody>
     </table>
-    <a class="btn btn-primary" href="members.php?do=Add"><i class="fa fa-plus"></i> Add Member</a>
+    <a class="btn btn-primary member_add" href="members.php?do=Add"><i class="fa fa-plus"></i> Add Member</a>
 </div>
 
 

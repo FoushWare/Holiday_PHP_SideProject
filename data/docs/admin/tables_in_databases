@@ -12,3 +12,36 @@ CREATE TABLE users(
                                 RegStatus  INT DEFAULT 0
                                     
         )ENGINE=INNODB;
+
+//second table categores table
+
+CREATE TABLE  categories(
+	ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    	name VARCHAR(255),
+    		describtion VARCHAR(255),
+    			ordering VARCHAR(255),
+    				visibility TINYINT DEFAULT 0,
+    					Allow_Comment TINYINT DEFAULT 0,
+    						Allow_Adds TINYINT DEFAULT 0
+
+
+
+)ENGINE=INNODB;
+
+
+
+
+//third table items
+CREATE TABLE  items(
+    item_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        Name VARCHAR(255),
+            Description VARCHAR(255),
+                 Price VARCHAR(255),
+                     Add_Date DATE,
+                         country_Made VARCHAR(255),
+                            image VARCHAR(255),
+                                Status VARCHAR(255),
+                                    Rating SMALLINT,
+                                        cat_ID INT,
+                                          Member_ID  INT
+        )ENGINE=INNODB;

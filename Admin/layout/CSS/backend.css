@@ -12,6 +12,9 @@ h1{
     margin-top:40px !important;
 }
 
+a:hover{
+    text-decoration:none;
+}
 /*End Main Rules*/
 
 /*START Login form*/
@@ -109,6 +112,9 @@ h1{
 }
 
 
+.member_add{
+    margin-bottom:50px;
+}
 .Edit{
     padding:6px  18px;
 }
@@ -133,16 +139,18 @@ h1{
     -moz-box-shadow:6px 1px  #CCC;
      box-shadow:6px 19px #CCC;
 
-     -webkit-transition:padding-left 1s;
-        -moz-transition:padding-left 1s;
-             transition:padding-left 1s;
-     -webkit-transition-timing-function:ease-in-out;
-        -moz-transition-timing-function:ease-in-out;
-             transition-timing-function:ease-in-out;
+     -webkit-transition:all 2s ease-in-out;
+        -moz-transition:all 2s ease-in-out;
+             transition:all 2s ease-in-out;
 }
 
 .main-state .state:hover{
 padding-left:50px;
+background:#2ecc71;
+color:#FFFFFF;
+}
+.main-state .state:hover a{
+    color:#e74c3c;
 }
 .main-state .state span{
     display:block;
@@ -188,28 +196,87 @@ text-decoration:none;
 .latest-users li a span{
     margin-left:2px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*End of Dashboard page*/
+
+/*start category page*/
+.main_form{
+    margin-bottom:90px;
+}
+
+.cat-panel .panel-body{
+    padding:0px;
+}
+.cat-panel{
+    -moz-box-shadow:8px 14px #DDD;
+    -webkit-box-shadow:8px 14px #DDD;
+    box-shadow:8px 14px #DDD;
+}
+
+.cat{
+    padding:15px;
+}
+.cat h3{
+    margin:0px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.categories .cat{
+position:relative;
+overflow:hidden;
+}
+
+.categories .cat  .hidden-buttons{
+
+position:absolute;
+top:10px;
+right:-184px;
+-webkit-transition:all .5s ease-in-out;
+-moz-transition:all .5s ease-in-out;
+transition:all .5s ease-in-out;
+
+}
+
+.categories .cat:hover .hidden-buttons{
+right:5px;
+
+}
+
+.categories .cat:hover{
+    background:#EEE;
+}
+
+
+ .categories hr {
+    margin:0;
+}
+
+ .categories hr:last-child {
+    border:0;
+}
+.cat-span{
+    color: #F4F4F4;
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin-right: 4px;
+}
+.visibility{
+background:#777;
+}
+.commenting{
+background:#c55b10;
+}
+.ads{
+background:#da0909;
+}
+
+.option .active{
+    color:#F00;
+}
+.cat-panel .option span{
+   cursor:pointer; 
+}
+.full-view p{
+    margin-top:4px;
+}
+
+/*End category page*/
