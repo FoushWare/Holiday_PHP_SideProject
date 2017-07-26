@@ -10,6 +10,143 @@ if($_SESSION['Username']){
 
         if($do=='Manage'){
 
+
+            $stmt=$con->prepare("SELECT items.*, categories.name AS
+                                                 Category_Name
+                                                 ,users.Username AS
+                                                 User_Name
+                                FROM items
+                                INNER JOIN categories ON
+                                    categories.ID = items.Cat_ID
+                                INNER JOIN users ON
+                                    users.UserID = items.Member_ID");
+    $stmt->execute();
+    $items=$stmt->fetchAll();
+?>
+
+<div class="container">
+<h1 class="text-center">Manage Members</h1>
+    <table class="main-table table-responsive table table-bordered text-center  table-striped table-hover ">
+        <thead>
+          <tr>
+            <th>#ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Add_Date</th>
+            <th>Country_Made</th>
+            <th>Memeber</th>
+            <th>category</th>
+            <th>Control</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+                        <?php
+
+                if(is_array($items) || is_object($items)){
+
+                            foreach($items as $item){
+                                     echo '<tr>';
+                                            echo'<td>'.$item['item_ID'].'</td>';
+                                            echo'<td>'.$item['Name'].'</td>';
+                                            echo'<td>'.$item['Description'].'</td>';
+                                            echo'<td>'.$item['Price'].'</td>';
+                                            echo'<td>'.$item['Add_Date'].'</td>';
+                                            echo'<td>'.$item['Country_Made'].'</td>';
+                                            echo'<td>'.$item['Category_Name'].'</td>';
+                                            echo'<td>'.$item['User_Name'].'</td>';
+                                            echo'<td>';
+                                            echo '<a class="btn btn-primary Edit" href="items.php?do=Edit&&itemId='.$item['item_ID'].'"><i class="fa fa-edit"></i>Edit</a>';
+                                            echo ' <a class="btn btn-danger Delete confirm" href="items.php?do=Delete&&itemId='.$item['item_ID'].'"><i class="fa fa-close"></i>Delete</a>';
+                                            echo'</td>';
+                                     echo '</tr>';
+                            }//End of foreach
+
+                    }//End of check if  row is array
+                        ?>
+        </tbody>
+    </table>
+    <a class="btn btn-primary member_add" href="items.php?do=Add"><i class="fa fa-plus"></i> Add Member</a>
+</div>
+
+
+
+
+<?php } //brace End of Manage page
+
+else if($do == 'Insert'){ //brace Start of Insert page
+
+    //check if the method is POST or not
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+echo '<div class="container">';
+echo '<h1 class="text-center">Insert Member</h1>';
+
+//get the info of the new user to insert it in the db
+$user=$_POST['username'];
+$email=$_POST['email'];
+$pass=$_POST['pass'];
+$name=$_POST['full'];
+
+/*Form validation*/
+        $formError=array();
+        if(strlen($user)<3){$formError[]="Username can't be less than <strong>3</strong>";}
+        else if(empty($user)){$formError[]="Username can't be<strong> empty</strong>";}
+        else if(empty($email)){$formError="email can't be<strong> empty</strong>";}
+        else if(empty($name)){$formError="fullName can't be<strong> empty</strong>";}
+
+//Loop through the error
+            foreach($formError as $error){
+                echo '<div class="alert alert-danger">' . $error .'</div>';
+}
+
+
+if(empty($formError)){ //if the form is added correctly
+
+/*first check if the New-user exists in the db or not
+ * to not conflict result and haveing dublecated users
+ */
+
+$count=checkItem('Username','users',$user);
+        if($count == 0){ //the username isn't in the db so i can add him/her
+
+
+
+
+            $stmt2 = $con->prepare("INSERT INTO users(Username , Password , Email,FullName,RegStatus,Date)
+                                    VALUES(:Xuser, :Xpass, :XEmail,:XFullName,1,now())");
+            $stmt2->execute(array(
+
+                ':Xuser'         =>      $user,
+                ':Xpass'         =>      $pass ,
+                ':XEmail'        =>      $email,
+                ":XFullName"     =>      $name
+            ));
+
+                $theMsg='<div class="alert alert-success h1 text-center">You have added new user :) </div>';
+                redirectHome($theMsg,'back');
+
+        }//End of [if condition] for count
+        else{//the user is exits in the db you can't insert him
+
+                $theMsg='<div class="alert alert-danger h1 text-center">The user is already exists </div>';
+                redirectHome($theMsg,'back');
+}
+
+
+} //end of if there is no error
+
+}else{// user get direct not from POST request
+
+$theMsg='<div class="alert alert-danger h1 text-center">You can not browse this page direct</div>';
+
+                redirectHome($theMsg);
+}
+
+
             echo"hello form ".$do." from ".$pageTitle;
 
 
@@ -183,6 +320,8 @@ else if($do=="Add"){
 }//End brace of add
 
 else if($do=="Insert"){
+    echo'<div class="container">';
+    echo'<h1 class="text-center">Insert Item</h1>';
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -253,20 +392,16 @@ $stmt->execute(array(
 
 ));
 
-echo '<div class="container">';
     echo'<br>';
         $theMsg='<div class="alert alert-success text-center">Everything OKay</div>';
         redirectHome($theMsg);
     echo'<br>';
-echo'</div>';
 
 }else{//the item is exists you can't add em as New item
-echo '<div class="container">';
     echo'<br>';
         $theMsg='<div class="alert alert-danger text-center">The item is exists in the db already</div>';
         redirectHome($theMsg);
     echo'<br>';
-echo'</div>';
 }
 
 
@@ -295,14 +430,14 @@ redirectHome($theMsg);
 
 
 else{//if the user didn't get from the add form
-echo '<div class="container">';
     echo'<br>';
         $theMsg='<div class="alert alert-danger text-center">YOU can not access this page direct</div>';
         redirectHome($theMsg);
 
     echo'<br>';
-echo '</div>';
 }
+
+echo '<div>';//This is for container
 
 ?>
 
@@ -323,13 +458,33 @@ else if($do=='Update'){
 
 }//end brace of update
 
+else if($do=='Edit'){
 
 
+    echo"hello form ".$do;
 
 ?>
 
 
 
+
+<?php
+}//End brace of Edit
+
+else if($do=='Delete'){
+
+    echo"hello form ".$do;
+
+?>
+
+
+
+
+<?php
+}//End brace of Delete
+
+
+?>
 
 
 
