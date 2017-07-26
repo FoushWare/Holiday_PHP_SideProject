@@ -16,7 +16,7 @@
 
         <ul class="nav navbar-nav">
                           <li><a href="categories.php">categores</a></li>
-                          <li><a href="#">items</a></li>
+                          <li><a href="items.php">items</a></li>
                           <li><a href="members.php">memebers</a></li>
                           <li><a href="#">comments</a></li>
         </ul>

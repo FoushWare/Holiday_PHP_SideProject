@@ -88,7 +88,7 @@ echo'</div>';
 
 
 
-        <a class="btn btn-primary btn-sm" href="?do=Add"><i class="fa fa-plus"></i> Add category</a>
+        <a class="btn btn-primary add-category-button " href="?do=Add"><i class="fa fa-plus"></i> Add category</a>
 
 </div>
 

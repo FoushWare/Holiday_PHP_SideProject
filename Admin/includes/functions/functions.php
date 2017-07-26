@@ -36,7 +36,7 @@ function redirectHome($theMsg,$url=null,$seconds =3){
 
 echo $theMsg;
 
-echo '<div class="alert alert-info"> You will be Redirected to '. $link.' after '. $seconds.'  seconds</div>';
+echo '<div class="alert alert-info text-center"> You will be Redirected to '. $link.' after '. $seconds.'  seconds</div>';
 
 header("refresh:$seconds,url=$url");
 
